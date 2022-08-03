@@ -8,25 +8,24 @@ app.use(express.json());
 
 app.get("/comics", (req, res) => {
   console.log("route /comics");
-  res.status(200).json({ message: "route /comics" });
+  res.status(200).json({ message: " la route /comics marche ;)" });
+
 });
 
 app.get("/comics/:characterId", (req, res) => {
   console.log("route /comics/:characterId");
-  res.status(200).json({ message: "route  /comics/:characterId" });
+  res.status(200).json({ message: "la route  /comics/:characterId marche ;)" });
 });
 
 app.get("/characters", (req, res) => {
   console.log("route /characters");
-  res.status(200).json({ message: "route /characters" });
+  res.status(200).json({ message: "la route /characters marche ;)" });
 });
 
 app.get("/character/:characterId", (req, res) => {
   console.log("route /character/:characterId");
-  res.status(200).json({ message: "route /character/:characterId" });
+  res.status(200).json({ message: "la route /character/:characterId marche ;)" });
 });
-
-
 
 app.all("*", (req, res) => {
   console.log("route not found");
