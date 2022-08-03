@@ -9,9 +9,10 @@ app.use(express.json());
 
 require('dotenv').config();
 
-//const apiKey = "0tIXVnEh3FhxCmBv"
+//apikey = "0tIXVnEh3FhxCmBv"
 
 
+//route comics
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
@@ -26,16 +27,25 @@ app.get("/comics", async (req, res) => {
   });
 
 
-
 app.get("/comics/:characterId", (req, res) => {
   console.log("route /comics/:characterId");
   res.status(200).json({ message: "la route  /comics/:characterId marche ;)" });
 });
 
-app.get("/characters", (req, res) => {
-  console.log("route /characters");
-  res.status(200).json({ message: "la route /characters marche ;)" });
-});
+//route personnages
+app.get("/characters", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}`
+    );
+    console.log("route /characters");
+    res.status(200).json(response.data);
+  
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+    }
+  });
+
 
 app.get("/character/:characterId", (req, res) => {
   console.log("route /character/:characterId");
