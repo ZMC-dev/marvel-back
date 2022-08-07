@@ -13,6 +13,21 @@ require('dotenv').config();
 
 
 //route comics
+app.get("/", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/`
+    );
+    console.log("route /");
+    res.status(200).json(response.data);
+  
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+    }
+  });
+
+
+//route comics
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
