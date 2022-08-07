@@ -13,21 +13,6 @@ require('dotenv').config();
 
 
 //route comics
-app.get("/", async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/`
-    );
-    console.log("route /");
-    res.status(200).json(response.data);
-  
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-    }
-  });
-
-
-//route comics
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
@@ -95,6 +80,6 @@ app.all("*", (req, res) => {
   res.status(404).json({ message: "route not found !" });
 });
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("server has started 🤓");
 });
