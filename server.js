@@ -9,14 +9,14 @@ app.use(express.json());
 
 require('dotenv').config();
 
-const home = require('../marvel-front/src/pages/Home');
+//const home = require('../marvel-front/src/pages/Home');
 
 //apikey = "0tIXVnEh3FhxCmBv"
 
-server.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.send(home)
   console.log("/ route found");
-});
+});*/
 
 //route comics
 app.get("/comics", async (req, res) => {
