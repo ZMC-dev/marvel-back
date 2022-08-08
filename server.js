@@ -9,8 +9,14 @@ app.use(express.json());
 
 require('dotenv').config();
 
+const home = require('../marvel-front/src/pages/Home');
+
 //apikey = "0tIXVnEh3FhxCmBv"
 
+server.get("/", (req, res) => {
+  res.send(home)
+  console.log("/ route found");
+});
 
 //route comics
 app.get("/comics", async (req, res) => {
@@ -44,7 +50,7 @@ app.get("/comics/:characterId",  async (req, res) => {
 });
 
 
-//route personnage par ID
+//route personnages
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
