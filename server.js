@@ -22,7 +22,7 @@ require('dotenv').config();
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${req.query.search}`
     );
     console.log("route /comics");
     res.status(200).json(response.data);
@@ -54,7 +54,7 @@ app.get("/comics/:characterId",  async (req, res) => {
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${req.query.search}`
     );
     console.log("route /characters");
     res.status(200).json(response.data);
