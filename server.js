@@ -9,22 +9,14 @@ app.use(express.json());
 
 require('dotenv').config();
 
-//const home = require('../marvel-front/src/pages/Home');
-
-//apikey = "0tIXVnEh3FhxCmBv"
-
-/*app.get("/", (req, res) => {
-  res.send(home)
-  console.log("/ route found");
-});*/
 
 //route comics
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${req.query.search}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?title=${req.query}&apiKey=${process.env.API_KEY}`
     );
-    console.log("route /comics");
+    console.log("/comics");
     res.status(200).json(response.data);
   
   } catch (error) {
@@ -41,7 +33,7 @@ app.get("/comics/:characterId",  async (req, res) => {
     );
     console.log(" ====> route /comics/:characterId");
     console.log(response.data)
-    console.log("characterID ==> "+req.params);
+    console.log("characterID ==> "+ req.params);
     res.status(200).json(response.data);
   
   } catch (error) {
@@ -54,9 +46,9 @@ app.get("/comics/:characterId",  async (req, res) => {
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${req.query.search}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?name=${req.query}&apiKey=${process.env.API_KEY}`
     );
-    console.log("route /characters");
+    console.log("route /characters" + req.query);
     res.status(200).json(response.data);
   
   } catch (error) {
