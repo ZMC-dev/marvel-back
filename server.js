@@ -14,9 +14,9 @@ require('dotenv').config();
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?title=${req.query}&apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/comics?title=${req.query.title}&apiKey=${process.env.API_KEY}`
     );
-    console.log("/comics");
+    console.log("/comics" + req.query.title);
     res.status(200).json(response.data);
   
   } catch (error) {
@@ -41,14 +41,14 @@ app.get("/comics/:characterId",  async (req, res) => {
     }
 });
 
-
 //route personnages
 app.get("/characters", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?name=${req.query}&apiKey=${process.env.API_KEY}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?name=${req.query.name}&skip=${req.query.skip}&limit=${req.query.limit}&apiKey=${process.env.API_KEY}`
     );
-    console.log("route /characters" + req.query);
+    console.log("/characters" + req.query.name);
+
     res.status(200).json(response.data);
   
   } catch (error) {
